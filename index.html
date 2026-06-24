@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DROP 01 — Camiseta Real Madrid · Acceso Limitado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black: #0a0a0a;
+    --black-soft: #121211;
+    --bone: #f5f5f0;
+    --white-hot: #fefefe;
+    --stone: #8a8580;
+    --stone-dim: #57534e;
+    --gold: #c9a96a;
+    --line: rgba(245,245,240,0.12);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--black);
+    color:var(--bone);
+    font-family:'Fraunces', serif;
+    overflow-x:hidden;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.05em;
+  }
+
+  .display{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- NOISE / SPOTLIGHT BACKDROP ---------- */
+  .grain{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:0.04;
+    z-index:50;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- TOP MARQUEE ---------- */
+  .marquee-bar{
+    background:var(--bone);
+    color:var(--black);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:8px 0;
+    position:relative;
+    z-index:10;
+  }
+  .marquee-track{
+    display:inline-block;
+    animation:scroll 22s linear infinite;
+  }
+  .marquee-track span{
+    display:inline-block;
+    padding:0 24px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:0.12em;
+  }
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:40;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 6vw;
+    background:rgba(10,10,10,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-mark{
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .nav-mark span{color:var(--gold);}
+  .nav-status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    color:var(--stone);
+    text-transform:uppercase;
+  }
+  .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:#5fc77a;
+    box-shadow:0 0 8px #5fc77a;
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:0.35;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 6vw 60px;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,255,255,0.10), transparent 60%),
+      var(--black);
+  }
+
+  .hero-eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.25em;
+    color:var(--gold);
+    margin-bottom:28px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .hero-eyebrow::before,
+  .hero-eyebrow::after{
+    content:'';
+    width:28px;height:1px;
+    background:var(--gold);
+    opacity:0.6;
+  }
+
+  .hero h1{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    font-weight:700;
+    font-size:clamp(48px, 11vw, 130px);
+    line-height:0.92;
+    letter-spacing:-0.01em;
+    color:var(--white-hot);
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:transparent;
+    -webkit-text-stroke:1.5px var(--bone);
+  }
+
+  .hero-sub{
+    margin-top:26px;
+    max-width:520px;
+    font-size:17px;
+    line-height:1.6;
+    color:var(--stone);
+    font-weight:300;
+  }
+  .hero-sub strong{color:var(--bone); font-weight:500;}
+
+  .hero-cta{
+    margin-top:44px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .btn{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding:16px 32px;
+    border-radius:2px;
+    cursor:pointer;
+    border:1px solid var(--bone);
+    background:transparent;
+    color:var(--bone);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:all .25s ease;
+  }
+  .btn-solid{
+    background:var(--bone);
+    color:var(--black);
+  }
+  .btn-solid:hover{background:var(--white-hot); transform:translateY(-2px);}
+  .btn:not(.btn-solid):hover{background:rgba(245,245,240,0.08); transform:translateY(-2px);}
+
+  .hero-scroll{
+    position:absolute;
+    bottom:36px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.2em;
+    color:var(--stone-dim);
+    text-transform:uppercase;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+  }
+  .hero-scroll::after{
+    content:'';
+    width:1px; height:30px;
+    background:linear-gradient(to bottom, var(--stone-dim), transparent);
+    animation:scrolldown 1.6s ease-in-out infinite;
+  }
+  @keyframes scrolldown{
+    0%{transform:scaleY(0); transform-origin:top;}
+    50%{transform:scaleY(1); transform-origin:top;}
+    51%{transform:scaleY(1); transform-origin:bottom;}
+    100%{transform:scaleY(0); transform-origin:bottom;}
+  }
+
+  section{
+    padding:120px 6vw;
+    position:relative;
+    border-top:1px solid var(--line);
+  }
+  .section-inner{
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  .label-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:50px;
+  }
+  .label-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--gold);
+  }
+< truncated lines 260-569 >
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- FOOTER / CTA FINAL ---------- */
+  footer{
+    padding:90px 6vw 50px;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+  .footer-eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.25em;
+    color:var(--gold);
+    margin-bottom:24px;
+  }
+  footer h2{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    font-size:clamp(32px,7vw,80px);
+    font-weight:700;
+    margin-bottom:36px;
+    line-height:0.95;
+  }
+  .legal-note{
+    margin-top:60px;
+    max-width:560px;
+    margin-left:auto;
+    margin-right:auto;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    line-height:1.8;
+    color:var(--stone-dim);
+  }
+  .footer-bottom{
+    margin-top:50px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--stone-dim);
+    letter-spacing:0.08em;
+  }
+
+  @media (max-width: 860px){
+    .premio-grid{grid-template-columns:1fr; gap:50px;}
+    .steps{grid-template-columns:1fr;}
+    .about{grid-template-columns:1fr; gap:28px;}
+    .ticket{grid-template-columns:1fr;}
+    .ticket::before{display:none;}
+    .ticket-stub{display:none;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  :focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>DROP 01 — CAMISETA OFICIAL REAL MADRID</span>
+    <span>★</span>
+    <span>1 SOLO GANADOR</span>
+    <span>★</span>
+    <span>ACCESO LIMITADO</span>
+    <span>★</span>
+    <span>DROP 01 — CAMISETA OFICIAL REAL MADRID</span>
+    <span>★</span>
+    <span>1 SOLO GANADOR</span>
+    <span>★</span>
+    <span>ACCESO LIMITADO</span>
+    <span>★</span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-mark">DROP<span>·</span>01</div>
+  <div class="nav-status"><span class="dot"></span>SORTEO ACTIVO</div>
+</nav>
+
+<section class="hero" style="border-top:none; padding-top:60px;">
+  <div class="hero-eyebrow">ACCESO LIMITADO · PAPELETA FÍSICA</div>
+  <h1>1 SOLO<br><em>GANADOR</em></h1>
+  <p class="hero-sub">Una camiseta oficial del <strong>Real Madrid</strong> en juego. Sin trampas, sin letra pequeña — escaneaste el QR de tu papeleta, ya estás dentro del proceso.</p>
+  <div class="hero-cta">
+    <a href="#participar" class="btn btn-solid">Cómo participar →</a>
+    <a href="#sorteo" class="btn">Ver fecha del sorteo</a>
+  </div>
+  <div class="hero-scroll">DESLIZA</div>
+</section>
+
+<section id="premio">
+  <div class="section-inner">
+    <div class="label-row">
+      <span class="label-num">01</span>
+      <span class="label-line"></span>
+      <span class="label-text">El premio</span>
+    </div>
+    <div class="premio-grid">
+      <div class="jersey-stage">
+        <span class="stage-tag">PIEZA EN EXHIBICIÓN</span>
+        <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M55 20 L75 10 C82 22 98 24 105 24 C112 24 128 22 135 10 L155 20 L170 55 L150 68 L145 200 C145 208 138 214 130 214 L70 214 C62 214 55 208 55 200 L50 68 L30 55 Z" fill="#e8631c" stroke="#0a0a0a" stroke-width="2"/>
+          <path d="M75 10 C82 22 98 24 105 24 C112 24 128 22 135 10" stroke="#0a0a0a" stroke-width="2" fill="none"/>
+          <line x1="100" y1="30" x2="100" y2="210" stroke="#c2521a" stroke-width="1"/>
+          <text x="100" y="130" font-family="Oswald, sans-serif" font-size="34" font-weight="700" fill="#0a0a0a" text-anchor="middle">11</text>
+        </svg>
+        <span class="stage-tag2">REF. RM-2526-T</span>
+      </div>
+      <div class="premio-text">
+        <h2>Camiseta oficial<br>3ª equipación naranja</h2>
+        <p>Talla a elección del ganador, producto 100% original y nuevo. Se entrega en mano o por envío asegurado, a coordinar directamente contigo tras el resultado del sorteo.</p>
+        <div class="premio-specs">
+          <div class="spec">
+            <div class="spec-label">Estado</div>
+            <div class="spec-value">Nueva, con etiqueta</div>
+          </div>
+          <div class="spec">
+            <div class="spec-label">Temporada</div>
+            <div class="spec-value">2025 / 2026</div>
+          </div>
+          <div class="spec">
+            <div class="spec-label">Talla</div>
+            <div class="spec-value">A elección</div>
+          </div>
+          <div class="spec">
+            <div class="spec-label">Entrega</div>
+            <div class="spec-value">Mano o envío</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="participar">
+  <div class="section-inner">
+    <div class="label-row">
+      <span class="label-num">02</span>
+      <span class="label-line"></span>
+      <span class="label-text">Cómo participar</span>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-mark">→ 01</span>
+        <h3>Consigue tu papeleta</h3>
+        <p>Cada papeleta física tiene un código QR único. Es tu acceso individual al sorteo — no hay dos iguales.</p>
+      </div>
+      <div class="step">
+        <span class="step-mark">→ 02</span>
+        <h3>Escanea y regístrate</h3>
+        <p>Al escanear, sigue el enlace que aparece para confirmar tu participación con tus datos de contacto.</p>
+      </div>
+      <div class="step">
+        <span class="step-mark">→ 03</span>
+        <h3>Espera el resultado</h3>
+        <p>El día del sorteo se elige un número entre todas las papeletas vendidas. El ganador se anuncia en redes y se contacta en privado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sorteo">
+  <div class="section-inner">
+    <div class="label-row">
+      <span class="label-num">03</span>
+      <span class="label-line"></span>
+      <span class="label-text">Fecha del sorteo</span>
+    </div>
+    <div class="ticket-wrap">
+      <div class="ticket">
+        <div class="ticket-main">
+          <div class="ticket-eyebrow">Sorteo en directo</div>
+          <div class="ticket-date">15 · AGO · 2026</div>
+          <div class="ticket-time mono">20:00h (España) · vía Instagram Live</div>
+          <div class="ticket-meta">
+            <div>Método<strong>Sorteo aleatorio verificable</strong></div>
+            <div>Ganador<strong>1 persona</strong></div>
+          </div>
+        </div>
+        <div class="ticket-stub">
+          <div class="ticket-stub-inner">DROP·01·RM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-inner">
+    <div class="label-row">
+      <span class="label-num">04</span>
+      <span class="label-line"></span>
+      <span class="label-text">Sobre el organizador</span>
+    </div>
+    <div class="about">
+      <div class="about-mark">100%<br>REAL</div>
+      <div>
+        <p>Soy quien organiza este sorteo, sin intermediarios ni empresa detrás — solo una persona aficionada al madridismo que quiere repartir algo bonito entre quienes confían en participar. <strong>Cada papeleta vendida financia directamente el premio</strong>, y el proceso de selección del ganador se muestra en directo para que no haya dudas.</p>
+        <div class="trust-row">
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a96a" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            Sorteo en directo
+          </div>
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a96a" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            Producto original
+          </div>
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a96a" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            Sin intermediarios
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="social-section">
+  <div class="section-inner">
+    <h2>Sigue el<br>proceso</h2>
+    <p>Todo el seguimiento del drop, recordatorios y el directo del sorteo se publican aquí.</p>
+    <div class="social-grid">
+      <a href="#" class="social-link">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f5f5f0" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="#" class="social-link">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f5f5f0" stroke-width="1.6"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        <span>TikTok</span>
+      </a>
+      <a href="#" class="social-link">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f5f5f0" stroke-width="1.6"><path d="M22 4s-.7 2-2 3.3c1.4 8.5-7 13.4-14.4 9.6A14.1 14.1 0 0 0 2 4s4 2 8-1c4-3 7 1 7 4 .9-.1 3-1 5-3z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-eyebrow">ÚLTIMA LLAMADA</div>
+  <h2>El sorteo<br>te espera</h2>
+  <a href="#participar" class="btn btn-solid">Ver pasos para participar</a>
+  <p class="legal-note mono">Este es un sorteo privado organizado de forma independiente. Revisa siempre la normativa local sobre rifas con venta de papeletas antes de participar u organizar un sorteo similar. La participación implica aceptar que el premio se entrega tras verificación del ganador.</p>
+  <div class="footer-bottom">DROP·01 — REAL MADRID EDITION — 2026</div>
+</footer>
+
+</body>
+  </html>
